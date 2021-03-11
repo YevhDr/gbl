@@ -109,19 +109,17 @@
         allow_zoom === false ? controls.noZoom = true : controls.noZoom = false;
     });
 
+    const color = 0xFFFFFF;    const intensity = 0.3;    const light = new THREE.HemisphereLight( 0x95bddc, 0xf4c88c, 0.4 );    scene.add( light );
+
 
     var keyLight = new THREE.DirectionalLight(0x999999, 1.0);
-    keyLight.position.set(-100, -100, 100);
-
-    var fillLight = new THREE.DirectionalLight(0xD3D3D3, 1.0);
-    fillLight.position.set(-100, 0, 100);
+    keyLight.position.set(-100, -100, 100).normalize();
 
     var backLight = new THREE.DirectionalLight(0xffffff, 1.0);
     backLight.position.set(100, 0, -100).normalize();
 
 
     scene.add(keyLight);
-    scene.add(fillLight);
     scene.add(backLight);
 
 
@@ -145,7 +143,6 @@
             controls.target = boundingBox.getCenter();
             scene.add(object);
             camera.position.y = -5000;
-           // camera.position.x = -5000;
 
             controls.update();
         });
